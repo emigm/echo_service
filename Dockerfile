@@ -19,9 +19,9 @@ RUN apt-get update && apt-get install -y \
     python-pip
 
 # Deploy application
+RUN mkdir /var/log/echo_service/
 COPY ./ /tmp/echo_service/
 WORKDIR /tmp/echo_service
-RUN mkdir /var/log/echo_service/
 RUN python setup.py sdist \
     && pip install dist/echo_service-1.0.0.tar.gz \
     && rm -rf /tmp/echo_service/
