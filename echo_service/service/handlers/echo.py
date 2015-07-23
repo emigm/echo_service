@@ -14,5 +14,5 @@ class EchoHandler(tornado.web.RequestHandler):  # pylint: disable=R0904
         message = self.request.body.decode('utf-8')
 
         self.set_status(200)
-        self.write('msg:' + message)
+        self.write('You sent me:' + message)
         self.finish()
