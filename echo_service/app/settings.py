@@ -28,7 +28,7 @@ LOGGER_CONFIG = {
     'handlers': {
         'stdout': {
             'class': 'logging.StreamHandler',
-            'level': 'ERROR',
+            'level': LOGGER_LEVEL,
             'formatter': 'json_basic',
             'stream': 'ext://sys.stdout',
         },
@@ -47,6 +47,6 @@ LOGGER_CONFIG = {
     },
     'root': {
         'level': LOGGER_LEVEL,
-        'handlers': ['stdout', 'file', ],
+        'handlers': ['stdout', ],
     },
 }
