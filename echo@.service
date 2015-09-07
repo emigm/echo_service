@@ -1,0 +1,34 @@
+[Unit]
+Description=Echo Service
+
+# Requirements
+Requires=docker.service
+
+# Dependency ordering
+After=docker.service
+
+[Service]
+# Get CoreOS environment varialbes
+EnvironmentFile=/etc/environment
+
+ExecStartPre=-/usr/bin/docker kill app.%p.%i
+ExecStartPre=-/usr/bin/docker rm app.%p.%i
+ExecStartPre=/usr/bin/docker pull quay.io/emigm/echo_service:latest
+
+ExecStart=/usr/bin/docker run \
+    -e APP_LOGGER_LEVEL=DEBUG \
+    -e APP_LOGGER_PATH=/tmp \
+    --name app.%p.%i \
+    quay.io/emigm/echo_service:latest
+
+ExecStop=/usr/bin/docker stop app.%p.%i
+
+Restart=always
+RestartSec=10
+
+# KillMode=none
+TimeoutStartSec=0
+
+[X-Fleet]
+Conflicts=echo@*.service
+MachineMetadata=role=minion
