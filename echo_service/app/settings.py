@@ -6,10 +6,6 @@ APP_NAME = 'ECHO_SERVICE'
 APP_ERR_CODE_PREFIX = APP_NAME
 APP_UUID_LENGTH = 32  # Bytes
 
-HTTP_PROXY = os.environ.get('APP_HTTP_PROXY')
-HTTPS_PROXY = os.environ.get('APP_HTTPS_PROXY')
-NO_PROXY = os.environ.get('APP_NO_PROXY')
-
 # Logger settings
 LOGGER_LEVEL = os.environ['APP_LOGGER_LEVEL']
 LOGGER_PATH = os.environ['APP_LOGGER_PATH']
